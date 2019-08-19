@@ -6,7 +6,7 @@
 
 ```js
 const kappa = require('kappa-core')
-const Query = require('kappa-view-query')
+const Query = require('kappa-view-pull-query')
 const ram = require('random-access-memory')
 
 const memdb = require('memdb')
@@ -111,7 +111,7 @@ core.ready(() => {
 ## API
 
 ```
-const View = require('kappa-view-query') 
+const View = require('kappa-view-pull-query')
 ```
 
 Expects a LevelUP or LevelDOWN instance `leveldb`.
@@ -130,11 +130,11 @@ core.api.query.add(opts)
 ## Install
 
 ```bash
-$ npm install kappa-view-query
+$ npm install kappa-view-pull-query
 ```
 
 ## Acknowledgments 
-kappa-view-query was inspired by flumeview-query and programmed by [@kieran](https://github.com/KGibb8/) and [@dominictarr](https://github.com/dominictarr).
+kappa-view-pull-query was inspired by flumeview-query and programmed by [@kieran](https://github.com/KGibb8/) and [@dominictarr](https://github.com/dominictarr).
 
 ## TODO
 
