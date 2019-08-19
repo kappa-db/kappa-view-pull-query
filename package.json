@@ -1,7 +1,7 @@
 {
-  "name": "kappa-view-query",
+  "name": "kappa-view-pull-query",
   "version": "1.0.0",
-  "description": "",
+  "description": "A middleware for using flumeview-query in kappa-core with pull-streams",
   "main": "index.js",
   "scripts": {
     "test": "set -e; for t in test/*.js; do node $t; done"

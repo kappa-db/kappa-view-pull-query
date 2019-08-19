@@ -1,7 +1,6 @@
 const toPull = require('stream-to-pull-stream')
 const defer = require('pull-defer')
 const pull = require('pull-stream')
-const get = require('lodash.get')
 const memdb = require('memdb')
 const charwise = require('charwise')
 const FlumeViewQuery = require('flumeview-query/inject')
