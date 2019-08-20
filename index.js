@@ -11,7 +11,6 @@ module.exports = function KappaViewQuery (db, core, opts = {}) {
   var events = new EventEmitter()
   var {
     indexes = [],
-    db = memdb(),
     validator = (msg) => msg
   } = opts
 
@@ -99,6 +98,17 @@ module.exports = function KappaViewQuery (db, core, opts = {}) {
       add: (core, _opts) => query.add(_opts),
       events
     },
+    storeState: (state, cb) => {
+      state = state.toString('base64')
+      db.put('state', state, cb)
+    },
+    fetchState: (cb) => {
+      db.get('state', function (err, state) {
+        if (err && err.notFound) cb()
+        else if (err) cb(err)
+        else cb(null, Buffer.from(state, 'base64'))
+      })
+    }
   }
 
   function source (_opts) {
