@@ -6,12 +6,15 @@ const charwise = require('charwise')
 const FlumeViewQuery = require('flumeview-query/inject')
 const many = require('pull-many')
 const { EventEmitter } = require('events')
+const debug = require('debug')('kappa-view-pull-query')
 
 module.exports = function KappaViewQuery (db, core, opts = {}) {
   var events = new EventEmitter()
+
   var {
     indexes = [],
-    validator = (msg) => msg
+    validator = (msg) => msg,
+    keyEncoding = charwise
   } = opts
 
 
@@ -24,7 +27,7 @@ module.exports = function KappaViewQuery (db, core, opts = {}) {
         toPull(db.createReadStream(Object.assign(_opts, {
           lte: [idx.key, ..._opts.lte],
           gte: [idx.key, ..._opts.gte],
-          keyEncoding: charwise,
+          keyEncoding,
           keys: true,
           values: true
         }))),
@@ -68,7 +71,7 @@ module.exports = function KappaViewQuery (db, core, opts = {}) {
               type: 'put',
               key: [idx.key, ...indexKeys],
               value: msgId,
-              keyEncoding: charwise,
+              keyEncoding,
             })
           }
 
@@ -86,6 +89,8 @@ module.exports = function KappaViewQuery (db, core, opts = {}) {
           }
         })
       })
+
+      debug(`[INDEXING] ${JSON.stringify(ops)}`)
 
       db.batch(ops, next)
     },
