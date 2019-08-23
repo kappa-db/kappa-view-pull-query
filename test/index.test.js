@@ -18,7 +18,7 @@ describe('basic', (context) => {
 
     indexes = [{ key: 'typ', value: [['value', 'type'], ['value', 'timestamp']] }]
 
-    core.use('query', Query(db, core, { indexes }))
+    core.use('query', Query(db, { indexes }))
   })
 
   context('perform a query', (assert, next) => {
@@ -81,7 +81,7 @@ describe('multiple feeds', (context) => {
     name1 = crypto.randomBytes(16).toString('hex')
     name2 = crypto.randomBytes(16).toString('hex')
 
-    core.use('query', Query(db, core, { indexes }))
+    core.use('query', Query(db, { indexes }))
   })
 
   context('aggregates all valid messages from all feeds when querying', (assert, next) => {
@@ -139,8 +139,8 @@ describe('multiple cores', (context) => {
 
     indexes = [{ key: 'typ', value: [['value', 'type'], ['value', 'timestamp']] }]
 
-    core1.use('query', Query(memdb(), core1, { indexes }))
-    core2.use('query', Query(memdb(), core2, { indexes }))
+    core1.use('query', Query(memdb(), { indexes }))
+    core2.use('query', Query(memdb(), { indexes }))
   })
 
   context('aggregates all valid messages from all feeds when querying', (assert, next) => {

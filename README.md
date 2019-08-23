@@ -133,10 +133,5 @@ core.api.query.add(opts)
 $ npm install kappa-view-pull-query
 ```
 
-## Acknowledgments 
+## Acknowledgments
 kappa-view-pull-query was inspired by flumeview-query and programmed by [@kieran](https://github.com/KGibb8/) and [@dominictarr](https://github.com/dominictarr).
-
-## TODO
-
-* Remove need for `core` to be passed as an argument, instead access from within the view itself, which should be available from kappa-core after being plugged in
-* Inherit test suite from flumeview-query
